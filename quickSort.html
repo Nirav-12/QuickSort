@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function pivot(arr, start, end) {
+        let pivot = arr[start];
+        let swap = start;
+
+        for (let i = start + 1; i < end; i++) {
+          if (arr[i] < pivot) {
+            swap++;
+            let temp = arr[i];
+            arr[i] = arr[swap];
+            arr[swap] = temp;
+          }
+        }
+
+        let temp = arr[start];
+        arr[start] = arr[swap];
+        arr[swap] = temp;
+
+        return swap;
+      }
+
+      function quickSort(arr, left = 0, right = arr.length) {
+        if (left < right) {
+          let pivotInd = pivot(arr, left, right);
+
+          quickSort(arr, left, pivotInd - 1);
+          quickSort(arr, pivotInd + 1, right);
+        }
+        return arr;
+      }
+      let ans = quickSort([4, 3, 5, 6, 3, 2, 9, 8]);
+      console.log(ans);
+    </script>
+  </body>
+</html>
